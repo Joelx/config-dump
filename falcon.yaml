@@ -1,0 +1,27 @@
+name: "h2o-falcon-7b"
+
+description: |
+    falcon: An Instruction-following LLM Using Evol-Instruct
+license: "N/A"
+urls:
+- https://huggingface.co/h2oai/h2ogpt-gm-oasst1-multilang-2048-falcon-7b/
+
+config_file: |
+    backend: falcon
+    parameters:
+      model: h2o-falcon-7b
+      top_k: 80
+      temperature: 0.2
+      top_p: 0.7
+    context_size: 1024
+    template:
+      completion: falcon-completion
+      chat: falcon-chat
+prompt_templates:
+- name: "falcon-completion"
+  content: |
+       <|prompt|>{{.Input}}<|endoftext|><|answer|>
+- name: "falcon-chat"
+  content: |
+    {{.Input}}
+    ### Response:
